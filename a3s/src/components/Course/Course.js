@@ -14,7 +14,6 @@ export default function Course() {
     },[]);
 
     // const addUser =(username,password) =>{
-      //tomorrow
 
     // };
 
