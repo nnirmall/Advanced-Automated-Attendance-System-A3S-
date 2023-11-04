@@ -1,6 +1,5 @@
-import React from "react"
 
-function Login(props) {
+export default function Login(props) {
     return (
         <div className="login-wrapper">
             <form className="Auth-form">
@@ -34,7 +33,6 @@ function Login(props) {
                 
             </form>
         </div>
-    )
+    );
 }
 
-export default Login;

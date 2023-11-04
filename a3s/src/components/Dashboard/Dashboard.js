@@ -1,13 +1,26 @@
-import React, { Component } from 'react'
+import { useState } from 'react';
 
-export class Dashboard extends Component {
-  render() {
-    return (
-      <div>
-        <h2>Dashboard</h2>
-      </div>
-    )
+
+export default function Dashboard() {
+  const [count, setCount] = useState(0);
+
+  function handleClick() {
+    setCount(count + 1);
   }
+
+  return (
+    <div>
+      <h1>Counters that update together</h1>
+      <MyButton count={count} onClick={handleClick} />
+      <MyButton count={count} onClick={handleClick} />
+    </div>
+  );
 }
 
-export default Dashboard
+function MyButton({ count, onClick }) {
+  return (
+    <button onClick={onClick}>
+      Clicked {count} times
+    </button>
+  );
+}
