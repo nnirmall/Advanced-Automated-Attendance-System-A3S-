@@ -1,0 +1,44 @@
+.CourseContainer{
+  height: 100%;
+  width: 100%;
+  padding: 0%;
+  /* background-color: aqua; */
+
+ 
+}
+.CardContainer{
+  width: 100%;
+  height: 150 px;
+  background-color: black;
+
+}
+.cardRow{
+  width: 100%;
+  height: 100%;
+  /* border: 1px solid black; */
+  /* background-color: aqua; */
+  margin: 0%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  color: white;
+}
+.card {
+  float: left;
+  width: 350px;
+  padding: .75rem;
+  margin-bottom: 2rem;
+  margin-left: 2rem;
+  border: 0;
+  background-color: #afb5bc;
+  border: 1px solid black;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+
+  
+}
+
+.card:hover{
+  cursor: pointer;
+  background-color: #434c5e;
+}

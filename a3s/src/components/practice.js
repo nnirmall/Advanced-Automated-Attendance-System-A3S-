@@ -19,8 +19,11 @@ export default function Dashboard() {
 
 function MyButton({ count, onClick }) {
   return (
-    <button onClick={onClick}>
-      Clicked {count} times
-    </button>
+    <div>
+      <button onClick={onClick}>
+        Clicked {count} times
+      </button>  
+    </div>
+    
   );
 }
