@@ -2,6 +2,8 @@
 import React, { useEffect, useState } from "react"
 import './Course.css';
 import Top from "./Top";
+import SideBar from "./SideBar";
+
 export default function Course() {
     const [users, setCourse] = useState([]);
     const fetchCourses = () => {
@@ -32,6 +34,10 @@ export default function Course() {
     
   
     return (
+      <div className="App">
+        <div className='container'>
+          <SideBar/>
+          <div className='dybamicPage'>
       <div className="CourseContainer">
 
         <section >
@@ -67,6 +73,10 @@ export default function Course() {
             </section>
   
       </div>
+      </div>
+      </div>
+      </div>
+
     );
   }
 //   const inputChangedHandler = e => {

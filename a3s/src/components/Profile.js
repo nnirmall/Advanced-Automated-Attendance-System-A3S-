@@ -1,19 +1,19 @@
 import React from 'react'
 import SideBar from './SideBar'
 
-function Dashboard() {
+function Profile() {
   return (
-    // <Router>
-      <div className="App">
+    <div className="App">
         <div className='container'>
           <SideBar/>
           <div className='dybamicPage'>
-            <h2>Dashboard</h2>
+           <h2>
+           Profile Page
+           </h2>
           </div>
-        </div>  
-      </div>
-    // </Router>
+        </div>
+    </div>
   )
 }
 
-export default Dashboard
+export default Profile

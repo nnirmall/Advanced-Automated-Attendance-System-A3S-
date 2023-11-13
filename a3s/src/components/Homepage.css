@@ -1,9 +1,4 @@
-
-.App {
-    background-color: white;
-  }
-  
-  .Auth-form-container {
+.Auth-form-container {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -38,3 +33,5 @@
     font-weight: 600;
     color: rgb(34, 34, 34);
   }
+
+  
