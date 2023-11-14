@@ -5,3 +5,4 @@
 
 <img width="1280" alt="image" src="https://github.com/nnirmall/Advanced-Automated-Attendance-System-A3S-/assets/41551407/4f520141-b03c-40e2-aa96-00d45777c103">
 
+<img width="1279" alt="image" src="https://github.com/nnirmall/Advanced-Automated-Attendance-System-A3S-/assets/41551407/d253c879-f8a6-4786-9cb1-f4f5034d08f8">
