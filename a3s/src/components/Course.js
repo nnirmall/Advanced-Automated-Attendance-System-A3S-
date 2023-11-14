@@ -1,11 +1,15 @@
 
 import React, { useEffect, useState } from "react"
 import './Course.css';
-import Top from "./Top";
+// import Top from "./Top";
 import SideBar from "./SideBar";
+// import SpecificCourse from "./SpecificCourse";
+import Top from "./Top";
 
 export default function Course() {
     const [users, setCourse] = useState([]);
+    const [selectedCourse, setSelectedCourse] = useState(null);
+    // const [cardPopup, setCardPopup] = useState(false);
     const fetchCourses = () => {
         // fetching data of course
         fetch('https://my-json-server.typicode.com/nnirmall/API_A3S_practice/courses')
@@ -25,21 +29,24 @@ export default function Course() {
 
     // };
 
-    const handleClick = (item) => {
-     console.log(item.courseId);
-     <Top
-     coursename={item.coursename} 
-     />
+    const handleClick = (event, course) => {
+      event.stopPropagation();
+      setSelectedCourse(course);
+      console.log("Clicked course:", course);
+      console.log("Event:", event);
     }
     
   
     return (
       <div className="App">
         <div className='container'>
+          
           <SideBar/>
           <div className='dybamicPage'>
       <div className="CourseContainer">
-
+      {selectedCourse ? ( // Only rendering Specfiic Course when clicked
+              <Top course={selectedCourse} />
+            ) : (
         <section >
                 <h2>Course Lists</h2>
                 <div className="row">
@@ -58,7 +65,7 @@ export default function Course() {
                 <div key={index}>
                   {/* {item} */}
                   <div className="card"
-                onClick={() => handleClick(item)}
+                onClick={(event) => handleClick(event, item)}
                 >
                   <h2>{item.coursename}</h2>
                   <p >Course ID: {item.courseId}</p>
@@ -71,11 +78,11 @@ export default function Course() {
               ))}
                         </div>
             </section>
-  
+      )}
       </div>
-      </div>
-      </div>
-      </div>
+    </div>
+  </div>
+</div>
 
     );
   }
