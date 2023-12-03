@@ -2,11 +2,19 @@
 import AddUser from './AddUser';
 import './Top.css';
 import './AddUser.css';
-import React, { useEffect, useState } from "react"
+import React, { useEffect, useState } from "react";
+import { useAuth } from './AuthContext';
+import { useNavigate } from 'react-router-dom';
+import TakeAttendance from './TakeAttendance';
+
 
 
 function Top(props) {
+  const { user } = useAuth();
+  const navigate = useNavigate();
   const [newStudent, setNewStudet] = useState([]);
+  const [showPopup, setShowPopup] = useState(false);
+  const [showPopupAttendance, setShowPopupAttendance] = useState(false);
 
   const fetchUsers = () => {
     fetch('https://my-json-server.typicode.com/nnirmall/API_A3S_practice/students')
@@ -34,36 +42,47 @@ function Top(props) {
     .then((data) => setNewStudet((prevStudents) => [...prevStudents, data]));
   } 
 
-  // console.log(props.course);
-  const handleGoToCourseList = () => {
-    window.location.href = '/course';
-  };
   const handleAddStudent = () => {
-    window.location.href = '/SpecificCourse';
+    setShowPopup(true); 
   };
   const handleTakeAttendance = () => {
-    window.location.href = '/course';
+    setShowPopupAttendance(true);
+
   };
   return (
   <div className='dybamicPage'>
     <div className="CourseContainer">
-      <section >
-      <button onClick={handleGoToCourseList}>Go to Course List</button>
+      <section>
       <button onClick={handleAddStudent}>Enroll a Student</button>
       <button onClick={handleTakeAttendance}>Take Attendance</button>
         <h2>Course Content</h2>
         <div className="CourseContent">
           <div className='CourseContentRow'>
-            <div className='addNewform'>
-              <h2>{props.course.coursename}</h2>
-              <p >Course ID: {props.course.courseId}</p>
-              <p >Instructor: {props.course.Instructor}</p>
-              <p >{props.course.password}</p>
-              <p >TotalEnrollment: {props.course.TotalEnrollment}</p>
-              <p >Credit: {props.course.credit}</p>
-            </div>
+          {showPopup ? (
+                <div className="popup">
+                  <button onClick={() => setShowPopup(false)} style={{ backgroundColor: 'red' }}>X</button>
+                  <AddUser addStudent={addStudent} course={props.course}/>
+                </div>
+              ) : (
+                // Render the new pop-up when showPopupAttendance is true
+                showPopupAttendance ? (
+                  <div className="popup">
+                    <button onClick={() => setShowPopupAttendance(false)} style={{ backgroundColor: 'red' }}>X</button>
+                    {/* Add the content for the attendance pop-up here */}
+                    <TakeAttendance />
+                  </div>
+                ) : (
+                  <div className='addNewform'>
+                    {/* Your existing code for displaying course information */}
+                    <p>Course ID: {props.course.courseId}</p>
+                    <p>Instructor: {props.course.accountId}</p>
+                    <p>{props.course.courseYear}</p>
+                  </div>
+                )
+              )}
             <div>
-              <AddUser addStudent={addStudent} course={props.course}/>
+
+              
             </div>
           </div>
           

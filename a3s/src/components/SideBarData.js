@@ -5,37 +5,44 @@ import ListAltIcon from '@material-ui/icons/ListAlt';
 import AssessmentIcon from '@material-ui/icons/Assessment';
 import SettingsIcon from '@material-ui/icons/Settings';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import { useAuth } from './AuthContext';
 
 export const SideBarData =[
     {
         title: "Dashboard",
         icon: <DashboardIcon />,
-        link: '/dashboard'
+        link: '/dashboard',
+        requiresAuth: true,
     },
     {
         title: "Instructor",
         icon: <AccountBoxIcon />,
-        link: "/profile"
+        link: "/profile",
+        requiresAuth: true,
     },
     {
         title: "Courses",
         icon: <ListAltIcon />,
-        link: "/course"
+        link: "/course",
+        requiresAuth: true,
     },
     {
         title: "Reports",
         icon: <AssessmentIcon />,
-        link: "/report"
+        link: "/report",
+        requiresAuth: true,
     },
     {
         title: "Settings",
         icon: <SettingsIcon />,
-        link: "/settings"
+        link: "/settings",
+        requiresAuth: true,
     },
     {
         title: "LogOut",
         icon: <ExitToAppIcon />,
-        link: "/logiut"
+        link: "/logiut",
+        requiresAuth: true,
     }
 
 ]
