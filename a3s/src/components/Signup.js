@@ -15,7 +15,7 @@ export default function Signup() {
   const [password, setPassword] = useState("");
   const [address, setAddress] = useState("");
   const [accountType, setAccountType] = useState("");
-  const [id, setUserId] = useState("");
+  const [userId, setUserId] = useState("");
   const [message, setMessage] = useState("");
 
 let handleSubmit = async (e) => {
@@ -29,7 +29,7 @@ let handleSubmit = async (e) => {
         "Content-Type": "application/json", // Specify that you are sending JSON data
       },
       body:JSON.stringify({
-        id: id,
+        userId: userId,
         firstname: firstname,
         lastname: lastname,
         email: email,
