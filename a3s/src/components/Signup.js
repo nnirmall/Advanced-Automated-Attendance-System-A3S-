@@ -19,7 +19,7 @@ export default function Signup() {
   const [message, setMessage] = useState("");
 
 let handleSubmit = async (e) => {
-  console.log(firstname)
+  // console.log(firstname)
 
   e.preventDefault();
   try {

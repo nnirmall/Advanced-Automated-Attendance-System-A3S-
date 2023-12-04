@@ -54,7 +54,8 @@ export default function Login() {
                 } else if (accountType === 1) {
                     setSelectedUser(responseData);
                 } else if (accountType === 2) {
-                    navigate('/dashboardStudent')
+                    setSelectedUser(responseData);
+                    // navigate('/dashboardStudent')
                 } else {
                     console.error('Unknown account type:', accountType);
                 }

@@ -30,13 +30,17 @@ function SideBar() {
         <li className='SideBarRow' >
           <Link to={{ pathname: '/profile', state: { user: user} }}>
             <div id='icon'> <AccountBoxIcon/></div>{""}
-            <div id='title'>{user.accountType === 0
+            <div id='title'>
+              {user.accountType !== 'undefined'
+                          ?     user.accountType === 0
                               ? 'Admin'
                               : user.accountType === 1
                               ? 'Instructor'
                               : user.accountType === 2
                               ? 'Student'
-                              : 'Unknown Account Type'}</div> 
+                              : 'Unknown Account Type'
+                              : 'User data not available'}
+                              </div> 
           </Link>
         </li>
         <li className='SideBarRow' >

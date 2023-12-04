@@ -13,7 +13,7 @@ function Top(props) {
   const { user } = useAuth();
   const navigate = useNavigate();
   const [newStudent, setNewStudet] = useState([]);
-  const [showPopup, setShowPopup] = useState(false);
+  const [showPopupAdd, setShowPopupAdd] = useState(false);
   const [showPopupAttendance, setShowPopupAttendance] = useState(false);
 
   const fetchUsers = () => {
@@ -43,7 +43,7 @@ function Top(props) {
   } 
 
   const handleAddStudent = () => {
-    setShowPopup(true); 
+    setShowPopupAdd(true); 
   };
   const handleTakeAttendance = () => {
     setShowPopupAttendance(true);
@@ -58,10 +58,10 @@ function Top(props) {
         <h2>Course Content</h2>
         <div className="CourseContent">
           <div className='CourseContentRow'>
-          {showPopup ? (
+          {showPopupAdd ? (
                 <div className="popup">
-                  <button onClick={() => setShowPopup(false)} style={{ backgroundColor: 'red' }}>X</button>
-                  <AddUser addStudent={addStudent} course={props.course}/>
+                  <button onClick={() => setShowPopupAdd(false)} style={{ backgroundColor: 'red' }}>X</button>
+                  <AddUser course={props.course}/>
                 </div>
               ) : (
                 // Render the new pop-up when showPopupAttendance is true
