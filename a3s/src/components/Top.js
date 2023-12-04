@@ -6,6 +6,7 @@ import React, { useEffect, useState } from "react";
 import { useAuth } from './AuthContext';
 import { useNavigate } from 'react-router-dom';
 import TakeAttendance from './TakeAttendance';
+import { Button } from '@material-ui/core';
 
 
 
@@ -53,26 +54,32 @@ function Top(props) {
   <div className='dybamicPage'>
     <div className="CourseContainer">
       <section>
-      <button onClick={handleAddStudent}>Enroll a Student</button>
-      <button onClick={handleTakeAttendance}>Take Attendance</button>
-        <h2>Course Content</h2>
         <div className="CourseContent">
           <div className='CourseContentRow'>
           {showPopupAdd ? (
+                <div>
                 <div className="popup">
                   <button onClick={() => setShowPopupAdd(false)} style={{ backgroundColor: 'red' }}>X</button>
                   <AddUser course={props.course}/>
                 </div>
+                </div>
               ) : (
                 // Render the new pop-up when showPopupAttendance is true
                 showPopupAttendance ? (
-                  <div className="popup">
-                    <button onClick={() => setShowPopupAttendance(false)} style={{ backgroundColor: 'red' }}>X</button>
-                    {/* Add the content for the attendance pop-up here */}
-                    <TakeAttendance />
+                  
+                  <div className="popup" >
+                    <h2>Attendance System</h2>
+                            <button onClick={() => setShowPopupAttendance(false)} style={{ backgroundColor: 'red' }}>X</button>
+                            <TakeAttendance course={props.course}/>
+                    
                   </div>
                 ) : (
+                  
                   <div className='addNewform'>
+                    <Button style={{ backgroundColor: 'green' }} onClick={handleAddStudent}>Enroll a Student</Button>
+                    '
+                    <Button style={{ backgroundColor: 'green' }} onClick={handleTakeAttendance}>Take Attendance</Button>
+                    <h2>Course Content</h2>
                     {/* Your existing code for displaying course information */}
                     <p>Course ID: {props.course.courseId}</p>
                     <p>Instructor: {props.course.accountId}</p>
