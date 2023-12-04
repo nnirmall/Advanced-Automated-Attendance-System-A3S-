@@ -57,7 +57,7 @@ let handleSubmit = async (e) => {
       setMessage("Some error occured");
     }
   } catch (err) {
-    console.log(err);
+    console.log("sdfsdf:" +err);
   }
 };
 

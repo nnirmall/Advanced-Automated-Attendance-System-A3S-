@@ -10,6 +10,13 @@ import { Link } from 'react-router-dom'
 import { useAuth } from './AuthContext';
 import AddCourse from "./AddCourse";
 
+import Box from '@mui/material/Box';
+import Card from '@mui/material/Card';
+import CardActions from '@mui/material/CardActions';
+import CardContent from '@mui/material/CardContent';
+import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
+
 
 export default function Course() {
     const { user } = useAuth();
@@ -74,11 +81,11 @@ return (
     <div className='container'>
       <SideBar />
       <div className='dybamicPage'>
-        <div className="CourseContainer">
+        <div className="CourseContainer" >
           {user.accountType === 1 && showPopup ? (
             // Render the pop-up when showPopup is true
             <div className="popup">
-              <button onClick={() => setShowPopup(false)}>Go back to course List</button>
+              <Button style={{ margin: '16px 20px 4px 24px' }} variant="outlined" size="small" onClick={() => setShowPopup(false)}>Back</Button>
               <Top course={selectedCourse} />
             </div>
           ) : (
@@ -143,7 +150,7 @@ return (
               ) : (
                 // Render the default section when neither pop-up is active
                 <section>
-                  {console.log("response:", users)}
+                  {console.log("responsehw:", users)}
                   {user.accountType === 1 ? (
                     <h2>Instructor Course Lists</h2>
                   ) : (
@@ -152,7 +159,7 @@ return (
                   <div className="row">
                     {users.map((item, index) => (
                       <div key={index}>
-                        <div
+                        {/* <div
                           className="card"
                           onClick={(event) => {
                             if (user.accountType === 2) {
@@ -166,7 +173,49 @@ return (
                           <p>Course ID: {item.courseId}</p>
                           <p>Instructor: {item.accountId}</p>
                           <p>{item.courseYear}</p>
-                        </div>
+                        </div> */
+                        
+                        <Box sx={{ minWidth: 275 }} margin={4}>
+                            <Card variant="outlined">
+                                <CardContent>
+                                    <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
+                                      Start: {item.courseStartDatetime} | End: {item.courseEndDatetime}
+                                    </Typography>
+                                    <Typography variant="body2" component="div">
+                                    Course Name: {item.courseName}
+                                    </Typography>
+                                    <Typography variant="body2" component="div">
+                                    Course ID: {item.courseId}
+                                    </Typography>
+                                    <Typography variant="body2" component="div">
+                                    Instructor ID: {item.accountId}
+                                    </Typography>
+                                    <Typography variant="body2" component="div">
+                                    Course Year: {item.courseYear}
+                                    </Typography>
+                                    {/* <Typography sx={{ mb: 1.5 }} color="text.secondary">
+                                      adjective
+                                    </Typography>
+                                    <Typography variant="body2">
+                                    Course ID: {item.courseId}
+                                      <br />
+                                      {'"a benevolent smile"'}
+                                    </Typography> */}
+                            </CardContent>
+                            <CardActions>
+                            <Button variant="outlined" size="small" onClick={(event) => {
+                            if (user.accountType === 2) {
+                              // Open the new pop-up for user.accountType === 2
+                              setShowStudentViewPopup(true);
+                            } else {
+                              handleClick(event, item);
+                            }
+                          }}>Expand</Button>
+                          </CardActions>
+                          </Card>
+                        </Box>
+
+                        }
                       </div>
                     ))}
                   </div>
