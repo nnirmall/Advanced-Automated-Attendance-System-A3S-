@@ -54,6 +54,12 @@ function Top(props) {
   <div className='dybamicPage'>
     <div className="CourseContainer">
       <section>
+      <div className="top-holder" style={{ display: 'flex', flexDirection: 'row'}}>
+        <button className='custom-button-1' style={{ margin: '16px 20px 4px 10px' }} onClick={handleAddStudent}>Enroll Student</button>
+        <button className='custom-button-1' style={{ margin: '16px 20px 4px 10px' }} onClick={handleTakeAttendance}>Take Attendance</button>
+      </div>
+      
+        <h2>Course Content</h2>
         <div className="CourseContent">
           <div className='CourseContentRow'>
           {showPopupAdd ? (

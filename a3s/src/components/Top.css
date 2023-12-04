@@ -17,6 +17,25 @@ body {
   /* background-color: red; */
 }
 
+
+.custom-button {
+  margin-top: 1.5rem;
+  display: block;
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  width: 100%;
+  color: #fff;
+  font-weight: 700;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  background: linear-gradient(to right, #695ee9, #695ee9);
+}
+
+.top-holder {
+  height: 100px;
+}
 /* Overlay Styles */
 .popup-overlay {
   display: none;

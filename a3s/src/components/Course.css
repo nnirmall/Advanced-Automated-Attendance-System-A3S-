@@ -42,3 +42,7 @@
   cursor: pointer;
   background-color: #434c5e;
 }
+
+.custom-button-text{
+  color: white
+}
