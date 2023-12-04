@@ -59,7 +59,7 @@ export default function AddUser(props) {
     <div className="body">{message ? <p>{message}</p> : null}</div>
 
       <form className='addNewform' onSubmit={handleAddSubmit}>
-        <h2>Add new Student</h2>
+        <h2>Enroll Student</h2>
 
         <div className="input-container">
             <label htmlFor="name">Course Id</label>
@@ -102,7 +102,7 @@ export default function AddUser(props) {
             />
         </div> */}
 
-        <button type="submit" className="btn-submit">Add Student</button>
+        <button type="submit" className="btn-submit">Add Student to the Course</button>
     </form>
 
     </div>

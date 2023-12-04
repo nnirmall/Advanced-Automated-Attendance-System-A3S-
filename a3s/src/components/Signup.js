@@ -36,7 +36,7 @@ let handleSubmit = async (e) => {
         phone: phone,
         address: address,
         password: password,
-        accountType: 1,
+        accountType: parseInt(accountType),
         
       }),
 
@@ -60,6 +60,12 @@ let handleSubmit = async (e) => {
     console.log("sdfsdf:" +err);
   }
 };
+
+const accountTypeOptions = [
+  { value: 0, label: "Admin" },
+  { value: 1, label: "Instructor" },
+  { value: 2, label: "Student" },
+];
 
   return (
     <div className="LoginContainer" style={{ 
@@ -111,24 +117,27 @@ let handleSubmit = async (e) => {
                   id="id" 
                   name="id" 
                   label="User Id" 
-                  placeholder="+1 (xxx)-(xxxx)-(xxx)"
+                  placeholder="L20xxxx"
                   onChange={(e) => setUserId(e.target.value)}  
                 />
-
-                <label id="accountType">Account type</label>
-                <Input 
+{/* 
+                <label id="accountType">Account type</label> */}
+                {/* <Input 
                   type="number" 
                   id="accountType" 
                   name="accountType" 
                   // label="User Id" 
                   placeholder="1"
-                  // onChange={(e) => setAccountType(e.target.value)}  
+                  onChange={(e) => setAccountType(e.target.value)}  
+                /> */}
+                <Input
+                  type="select"
+                  id="accountType"
+                  name="accountType"
+                  label="Account Type"
+                  options={accountTypeOptions}
+                  onChange={(e) => setAccountType(e.target.value)}
                 />
-                {/* <select name="accountType" id="accountType" onChange={(e) => setUserId(e.target.value)}>
-                    <option value="0" type="number"   >Student</option>
-                    <option value="1" type="number" >Instructor</option>
-                    <option value="2" type="number">Admin</option>
-                </select> */}
                 <Input 
                   type="address" 
                   id="address" 
@@ -158,17 +167,37 @@ let handleSubmit = async (e) => {
   )
 }
 
-function Input({type, id, name, label, placeholder, autofocus, onChange}) {
+function Input({type, userid, name, label, placeholder, autofocus, onChange,options}) {
+  if (type === "select") {
+    return (
+      <label className="text-gray-500 block mt-3">{label}
+        <select
+          id={name}
+          name={name}
+          className="custom-input"
+          onChange={onChange}
+        >
+          {options.map((option) => (
+            <option key={option.value} value={option.value}>
+              {option.label}
+            </option>
+          ))}
+        </select>
+      </label>
+    );
+  } else {
     return (
       <label className="text-gray-500 block mt-3">{label}
         <input
           autoFocus={autofocus}
           type={type} 
-          id={id} 
+          userid={userid} 
           name={name} 
           placeholder={placeholder}
           className="custom-input"
-          onChange={onChange}/>
+          onChange={onChange}
+        />
       </label>
-    )
+    );
+  }
 }
