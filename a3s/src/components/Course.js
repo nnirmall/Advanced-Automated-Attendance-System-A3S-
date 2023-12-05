@@ -5,12 +5,11 @@ import './Course.css';
 import SideBar from "./SideBar";
 // import SpecificCourse from "./SpecificCourse";
 import Top from "./Top";
-import { Link } from 'react-router-dom'
+// import { Link } from 'react-router-dom'
 
 import { useAuth } from './AuthContext';
 import AddCourse from "./AddCourse";
 import MarkAttendance from "./MarkAttendance";
-
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
@@ -50,7 +49,7 @@ export default function Course() {
       console.log("Calling fetchCourses with user:", user);
         fetchCourses()
         // console.log("response:", users)
-    },[]);
+    },[user]);
 
     // const addUser =(username,password) =>{
 
@@ -71,11 +70,17 @@ export default function Course() {
     const handleAddCourse = () => {
       setShowAddStudentPopup(true); 
     };
-    
-  
-    // ... (previous code)
 
-// ... (previous code)
+    const handleExpandClick = (event, course) => {
+      event.stopPropagation();
+      setSelectedCourse(course);
+      setShowStudentViewPopup(true);
+      if (user.accountType === 1) {
+        setShowPopup(true);
+      } else {
+        setShowStudentViewPopup(true);
+      }
+    }
 
 return (
   <div className="App">
@@ -99,13 +104,14 @@ return (
               </div>
             ) : (
               // Render the new pop-up for user.accountType === 2
-              user.accountType === 2 && showStudentViewPopup ? (
+              user.accountType === 2 && showStudentViewPopup && selectedCourse ? (
+
                 <div className="popup">
                   {/* Add content for the student view pop-up here */}
                   {/* Example: */}
                   <button onClick={() => setShowStudentViewPopup(false)} style={{ backgroundColor: 'red' }}>X</button>
                   <h2>Mark Attendance</h2>
-                  <MarkAttendance course={selectedCourse}/>
+                  <MarkAttendance getcourse={selectedCourse}/>
                   {/* Add more content as needed */}
                 </div>
               ) : (
@@ -164,14 +170,13 @@ return (
                                     </Typography> */}
                             </CardContent>
                             <CardActions>
-                            <Button variant="outlined" size="small" onClick={(event) => {
-                            if (user.accountType === 2) {
-                              // Open the new pop-up for user.accountType === 2
-                              setShowStudentViewPopup(true);
-                            } else {
-                              handleClick(event, item);
-                            }
-                          }}>Expand</Button>
+                            <Button
+                                variant="outlined"
+                                size="small"
+                                onClick={(event) => handleExpandClick(event, item)}
+                              >
+                                Expand
+                              </Button>
                           </CardActions>
                           </Card>
                         </Box>

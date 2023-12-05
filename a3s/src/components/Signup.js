@@ -19,8 +19,6 @@ export default function Signup() {
   const [message, setMessage] = useState("");
 
 let handleSubmit = async (e) => {
-  // console.log(firstname)
-
   e.preventDefault();
   try {
     let res = await fetch("https://localhost:7220/api/Login/user/add", {
@@ -159,7 +157,7 @@ const accountTypeOptions = [
                 <div className="body">{message ? <p>{message}</p> : null}</div>
             </form>
             <div className='register'>
-                <label>  Already have an account? <Link to="/login">Log in here!</Link></label>
+                <label> Already have an account? <Link to="/login">Log in here!</Link></label>
             </div>
         </div>
            

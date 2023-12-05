@@ -5,7 +5,7 @@ import './AddUser.css';
 
 
 function TakeAttendance(props) {
-  // console.log(props)
+  // console.log("Hello",props)
   const [instructorId, setInstructorId] = useState("");
   const [attendanceMethodId, setAttendanceMethodId] = useState("");
   const [title, setTitle] = useState("");
@@ -43,6 +43,8 @@ function TakeAttendance(props) {
       imageUrl: "",
       message: message,
     };
+    console.log("requestBody", requestBody)
+
 
     // Include correctAnswer and answerOptions only when attendanceMethodId is "0"
     if (attendanceMethodId === "1") {
@@ -55,8 +57,18 @@ function TakeAttendance(props) {
         answerOption4: answerOption4,
       };
     }
+    else {
+      requestBody = {
+        ...requestBody,
+        correctAnswer: "",
+        answerOption1: "",
+        answerOption2: "",
+        answerOption3: "",
+        answerOption4: "",
+      };
+    }
     try {
-      // console.log("requestBody",requestBody)
+      console.log("requestBody",requestBody)
       let res = await fetch("https://localhost:7220/api/Attendance/take-attendance-by-instructor", {
         method: "POST",
         headers: {
@@ -66,7 +78,7 @@ function TakeAttendance(props) {
       });
 
       let resJson = await res.json();
-      console.log(resJson);
+      console.log("res",resJson);
       if (res.status === 200) {
         setInstructorId("");
         setAttendanceMethodId("");
@@ -92,9 +104,10 @@ function TakeAttendance(props) {
   }
 
   const renderCorrectAnswerOptions = () => {
-    if (attendanceMethodId === "1") {
+    if (attendanceMethodId === "4") {
       return (
         <>
+        {/* {console.log("response Attendance:", attendance)} */}
           <Input
             type="text"
             id="answerOption1"
