@@ -51,7 +51,7 @@ function SideieeBar(what) {
           </Link>
         </li>
         <li>
-          <Link to={{ pathname: '/logout', state: { user: what} }}>
+          <Link to={{ pathname: '/login', state: { user: what} }}>
             <ExitToAppIcon/>LogOut
           </Link>
         </li>

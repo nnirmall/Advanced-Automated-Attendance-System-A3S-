@@ -8,7 +8,7 @@ import Signup from './Signup';
 import Dashboard from './Dashboard';
 import Course from './Course';
 import Reports from './Reports';
-import Preferences from './Preferences/Preferences';
+import Preferences from './Preferences';
 import SpecificCourse from './SpecificCourse';
 import Profile from './Profile';
 import Top from './Top';
@@ -32,7 +32,7 @@ export default function Homepage() {
         <Route path="/report" element={<Reports />} />
         <Route path="/settings" element={<Preferences />} />
         <Route path="/SpecificCourse" element={<SpecificCourse />} />
-        <Route path="/logiut" element={<Login/>} />
+        <Route path="/logout" element={<Login/>} />
         <Route path="/top" element={<Top/>}/>
         {/* <Route exact path="/">
           {isLoggedIn ? (

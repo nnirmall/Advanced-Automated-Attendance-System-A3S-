@@ -65,7 +65,7 @@ function SideBar() {
           </Link>
         </li>
         <li className='SideBarRow' >
-          <Link to={{ pathname: '/logout', state: { user: user} }}>
+          <Link to={{ pathname: '/', state: { user: user} }}>
              
             <div id='icon'> <ExitToAppIcon/></div>{""}
           <div id='title'>LogOut</div> 

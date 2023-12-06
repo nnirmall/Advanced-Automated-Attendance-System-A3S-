@@ -8,12 +8,14 @@ function TakeAttendance(props) {
   // console.log("Hello",props)
   const [instructorId, setInstructorId] = useState("");
   const [attendanceMethodId, setAttendanceMethodId] = useState("");
+  
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [correctAnswer, setCorrectAnswer] = useState("");
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
   const [allowMultipleAttendance, setAllowMultipleAttendance] = useState("");
+
   const [answerOption1, setAnswerOption1] = useState("");
   const [answerOption2, setAnswerOption2] = useState("");
   const [answerOption3, setAnswerOption3] = useState("");
@@ -40,31 +42,45 @@ function TakeAttendance(props) {
       allowMultipleAttendance: Boolean(allowMultipleAttendance),
       courseId: props.course.courseId,
       courseName: props.course.courseId,
-      imageUrl: "",
+      correctAnswer: correctAnswer,
       message: message,
     };
     console.log("requestBody", requestBody)
 
 
     // Include correctAnswer and answerOptions only when attendanceMethodId is "0"
-    if (attendanceMethodId === "1") {
+    if (attendanceMethodId === "5") {
       requestBody = {
         ...requestBody,
-        correctAnswer: correctAnswer,
+        
         answerOption1: answerOption1,
         answerOption2: answerOption2,
         answerOption3: answerOption3,
         answerOption4: answerOption4,
+        imageUrl: "",
+      };
+    }
+    else if (attendanceMethodId === "2") {
+      requestBody = {
+        ...requestBody,
+        // correctAnswer: "",
+        answerOption1: "",
+        answerOption2: "",
+        answerOption3: "",
+        answerOption4: "",
+        imageUrl: "",
       };
     }
     else {
       requestBody = {
         ...requestBody,
-        correctAnswer: "",
+        // correctAnswer: "",
         answerOption1: "",
         answerOption2: "",
         answerOption3: "",
         answerOption4: "",
+        imageUrl: imageUrl,
+
       };
     }
     try {
@@ -104,7 +120,7 @@ function TakeAttendance(props) {
   }
 
   const renderCorrectAnswerOptions = () => {
-    if (attendanceMethodId === "4") {
+    if (attendanceMethodId === "5") {
       return (
         <>
         {/* {console.log("response Attendance:", attendance)} */}
@@ -144,6 +160,30 @@ function TakeAttendance(props) {
       );
     }
   };
+
+//   function handleImageUpload(e) {
+//     console.log(e.target.files);
+//     // const image = e.target.files[0];
+//     // console.log("image" + image);
+//     setImageUrl("localhttps");
+//     setImageUrl(attendance.answerOption1)
+//     // imageUrl(URL.createObjectURL(e.target.files[0]));
+// }
+
+  const renderImageUpload = () => {
+    if (attendanceMethodId === "3") {
+      const staticImageUrl = process.env.PUBLIC_URL + '/img/example.jpg';
+
+      return (
+        <>
+          Upload Image
+          <input type="file" onChange={() => setImageUrl(staticImageUrl)}            
+          />
+          {/* <img src={file} /> */}
+        </>
+      );
+    }
+  };
   
   return (
     <div>
@@ -153,8 +193,8 @@ function TakeAttendance(props) {
                     type="number" 
                     id="type" 
                     name="attendanceMethodId" 
-                    label="Attendance Method" 
-                    placeholder="1,2,3" 
+                    label="Attendance Method"   
+                    placeholder="2 for fill, 5 for quiz and 3 for image" 
                     autofocus={true}
                     onChange={(e) => setAttendanceMethodId(e.target.value)}
                   />
@@ -168,6 +208,7 @@ function TakeAttendance(props) {
                     onChange={(e) => setTitle(e.target.value)}
                   />
                   {renderCorrectAnswerOptions()}
+                  {renderImageUpload()}
                   <Input 
                     type="text" 
                     id="description" 

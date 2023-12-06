@@ -110,7 +110,6 @@ return (
                   {/* Add content for the student view pop-up here */}
                   {/* Example: */}
                   <button onClick={() => setShowStudentViewPopup(false)} style={{ backgroundColor: 'red' }}>X</button>
-                  <h2>Mark Attendance</h2>
                   <MarkAttendance getcourse={selectedCourse}/>
                   {/* Add more content as needed */}
                 </div>

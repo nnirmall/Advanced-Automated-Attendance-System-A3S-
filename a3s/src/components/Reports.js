@@ -6,6 +6,7 @@ import { PieChart, pieArcLabelClasses } from '@mui/x-charts/PieChart';
 import { BarChart } from '@mui/x-charts/BarChart';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
+import SideBar from "./SideBar";
 
 
 
@@ -112,98 +113,105 @@ function Reports() {
     
     
   return (    
-    // <div>
-    //   <form id="quizForm" onSubmit={handleReportSubmit} >
-    //   <Button type='submit' className='custom-button' value="submit"> Add Attendance </Button>
-    //             </form>
-    // </div>
-
-    <div style={{
-      display: 'inline',
-      alignItems: 'center',
-      justifyContent: 'center',
-      height: '100vh',
-    }}>
-      <form id="quizForm" onSubmit={handleReportSubmit} >
-
-      <div style={{
-      display: 'flex',
-      margin: '10px',
-      padding: '40px',
-    }}>
-          <Typography style={{margin:20}} variant="body2" component="div" sx={{ fontSize: 20 }} color="text.secondary" >Course Id</Typography>
-          <input style={{margin:20}} type="text" className="custom-input" label="Course Id" placeholder="COSC 1200" onChange={e => setCourseId(e.target.value)} />
-          <Typography style={{margin:20}} variant="body2" component="div" sx={{ fontSize: 20 }} color="text.secondary" >Course Year</Typography>
-          <input style={{margin:20}} type="text" className="custom-input"  label="Course Year" placeholder="2023"  onChange={e => setCourseYear(e.target.value)} />
-          <Button style={{margin:20}} type='submit' value="submit"> Search </Button>
-    </div>
-      
-      <div>
-        {AttendanceDataReady ? (<div>
-          
-
-      <Typography style={{
-        display: 'flex',
-        alignItems: 'center',
-        left: '50%',
-        justifyContent: 'center',
-      }} variant="body2" component="div" sx={{ fontSize: 44 }} color="text.secondary" >Attendance Report</Typography>
-      
-          <div style={{
-        display: 'flex',
-        alignItems: 'center',
-        left: '50%',
-        justifyContent: 'center',
-      }}>
-        
-      <PieChart  
-      series={[
-        {
-          outerRadius: 80,
-          data,
-          arcLabel: getArcLabel,
-        },
-      ]}
-      sx={{
-        [`& .${pieArcLabelClasses.root}`]: {
-          fill: 'white',
-          fontSize: 14,
-        },
-      }}
-      {...sizing}
-    />
-    </div>
-    <Typography style={{
-        display: 'flex',
-        alignItems: 'center',
-        left: '50%',
-        justifyContent: 'center',
-      }} variant="body2" component="div" sx={{ fontSize: 24 }} color="text.secondary" >Total Attendance Percentage</Typography>
-    
-    <div style={{
-        display: 'flex',
-        alignItems: 'center',
-        left: '50%',
-        justifyContent: 'center',
-      }}>
-        <BarChart 
-      xAxis={[{ scaleType: 'band', data: AttendanceDate }]}
-      series={[{ data: AttendanceCount }]}
-      width={500}
-      height={300}
-    />
-    
-    </div>
-
-    <Typography style={{
-        display: 'flex',
-        alignItems: 'center',
-        left: '50%',
-        justifyContent: 'center',
-      }} variant="body2" component="div" sx={{ fontSize: 24 }} color="text.secondary" >Attendance by days</Typography>
-        </div>):(<div></div>)}
+    <div className="App">
+        <div className='container'>
+          <SideBar/>
+          <div className='dybamicPage'>
+            <div style={{
+              display: 'inline',
+              alignItems: 'center',
+              justifyContent: 'center',
+              height: '100vh',
+              }}>
+               {user.accountType === 2 ? (
+            <div style={{
+              display: 'inline',
+              alignItems: 'center',
+              justifyContent: 'center',
+              height: '100vh',
+              }}>
+              <Typography variant="body2" component="div" sx={{ fontSize: 24 }} color="text.secondary" >
+                Report feature coming soon
+              </Typography>
+            </div>
+          ) : (
+            <form id="quizForm" onSubmit={handleReportSubmit} >
+              <div style={{
+                display: 'flex',
+                margin: '10px',
+                padding: '40px',
+              }}>
+                <Typography style={{margin:20}} variant="body2" component="div" sx={{ fontSize: 20 }} color="text.secondary" >Course Id</Typography>
+                  <input style={{margin:20}} type="text" className="custom-input" label="Course Id" placeholder="COSC 1200" onChange={e => setCourseId(e.target.value)} />
+                  <Typography style={{margin:20}} variant="body2" component="div" sx={{ fontSize: 20 }} color="text.secondary" >Course Year</Typography>
+                  <input style={{margin:20}} type="text" className="custom-input"  label="Course Year" placeholder="2023"  onChange={e => setCourseYear(e.target.value)} />
+                  <Button style={{margin:20}} type='submit' value="submit"> Search </Button>
+            </div>
+                {AttendanceDataReady ? (
+                  <div>
+                    <Typography style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      left: '50%',
+                      justifyContent: 'center',
+                      }} variant="body2" component="div" sx={{ fontSize: 44 }} color="text.secondary" >Attendance Report
+                    </Typography>
+                    <div style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        left: '50%',
+                        justifyContent: 'center',
+                      }}>
+                        <PieChart  
+                          series={[
+                            {
+                              outerRadius: 80,
+                              data,
+                              arcLabel: getArcLabel,
+                            },
+                          ]}
+                          sx={{
+                            [`& .${pieArcLabelClasses.root}`]: {
+                              fill: 'white',
+                              fontSize: 14,
+                            },
+                          }}
+                          {...sizing}
+                        />
+                    </div>
+                    <Typography style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      left: '50%',
+                      justifyContent: 'center',
+                    }} variant="body2" component="div" sx={{ fontSize: 24 }} color="text.secondary" >Total Attendance Percentage
+                    </Typography>
+                    <div style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      left: '50%',
+                      justifyContent: 'center',
+                    }}>
+                      <BarChart 
+                        xAxis={[{ scaleType: 'band', data: AttendanceDate }]}
+                        series={[{ data: AttendanceCount }]}
+                        width={500}
+                        height={300}
+                      />
+                    </div>  
+                    <Typography style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      left: '50%',
+                      justifyContent: 'center',
+                    }} variant="body2" component="div" sx={{ fontSize: 24 }} color="text.secondary" >Attendance by days
+                    </Typography>
+                    </div>):(<div></div>)}
+              </form>
+              )}
+            </div>
+          </div>
         </div>
-    </form>
     </div>
   )
 
